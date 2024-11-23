@@ -1,0 +1,11 @@
+# saved commands to re-create worldcup database
+# saving a dump is harder (in my opinion)
+
+# create database
+CREATE DATABASE worldcup;
+
+# create teams table and add columns
+CREATE TABLE teams(team_id SERIAL PRIMARY KEY NOT NULL, name VARCHAR(50) UNIQUE NOT NULL);
+
+# create games table and add columns
+CREATE TABLE games(game_id SERIAL PRIMARY KEY NOT NULL, year INT NOT NULL, round VARCHAR(50) NOT NULL, winner_goals INT NOT NULL, opponent_goals INT NOT NULL, winner_id INT NOT NULL, opponent_id INT NOT NULL, CONSTRAINT winner_id_fkey FOREIGN KEY (winner_id) REFERENCES teams(team_id), CONSTRAINT opponent_id_fkey FOREIGN KEY (opponent_id) REFERENCES teams(team_id));
